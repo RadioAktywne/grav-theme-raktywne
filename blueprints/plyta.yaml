@@ -1,0 +1,42 @@
+title: Default
+'@extends':
+   type: default
+   context: blueprints://pages
+
+form:
+   fields:
+      tabs:
+         type: tabs
+         active: 1
+
+         fields:
+            content:
+               fields:
+                  header.artist:
+                     type: text
+                     label: Artysta
+                     validate:
+                        type: string
+                        required: true
+                  header.titlec:
+                     type: text
+                     label: Tytuł Albumu
+                     validate:
+                        type: string
+                        required: true
+                  display_image:
+                     type: file
+                     label: Obrazek
+                     destination: 'self@'
+                     random_name: true
+                     accept:
+                        - 'image/*'
+                  audio_attach_oga:
+                     type: file
+                     label: Audio OGG
+                     destination: 'self@'
+                     random_name: true
+                     accept:
+                        - 'audio/*'
+                        - 'video/*'
+

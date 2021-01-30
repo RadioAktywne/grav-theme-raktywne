@@ -1,0 +1,22 @@
+title: Radiowiec
+'@extends':
+   type: default
+   context: blueprints://pages
+
+form:
+   fields:
+      tabs:
+         type: tabs
+         active: 1
+
+         fields:
+            content:
+               fields:
+                  header.rola:
+                      type: text
+                      label: Rola w RA
+                      default: ''
+                      validate:
+                         required: true
+                         type: string
+

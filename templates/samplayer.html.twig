@@ -1,0 +1,43 @@
+{% extends 'partials/base.html.twig' %}
+
+{# =====================KOLEKCJE================== #}
+
+{% block content %}
+	<div class="grid">
+		<div class="grid-box-1-1" id="player2-box">
+			<div class="grid-box-content">
+				<div class="grid-box-bg" style="background-image: url('{{ page.media[page.header.display_image|first.name].url() }}'); "></div>
+				<div class="title-box"><h2>Player</h2></div>
+		
+				<div id="player2-box-content">
+					<div class="grid-box-bg"></div>
+					<div id="jp_live2_container">
+						<div id="jp-live2-play" class="player-button">
+							<img src={{ url('theme://images/play-white.svg') }}></img>
+						</div>
+						<div id="jp-live2-pause" class="player-button">
+							<img src={{ url('theme://images/pause-white.svg') }}></img>
+						</div>
+						<div id="rds2">
+							<div id="headerLive2Holder" class="jp-live2-title">{{ page.header.streamtitle }}</div>
+                            <div class="jp-live2-hours">{{ page.header.streamhours }}</div>
+						</div>
+						<div id="jp-live2-mute" class="player-button">
+							<img src={{ url('theme://images/guosnik-white.svg') }}></img>
+						</div>
+						<div id="jp-live2-unmute" class="player-button">
+							<img src={{ url('theme://images/guosnik-mute-white.svg') }}></img>
+						</div>
+						<div id="jp-live2-volume-bar" class="player-slider">
+							<div id="jp-live-volume-bar-value" class="player-slider"></div>
+						</div>
+					</div>
+                </div>
+                {% if page.content|length %}
+                    <div class="live2-description"> {{ page.content }} </div>
+                {% endif %}
+			</div>
+		</div>
+	</div>
+					
+{% endblock %} 

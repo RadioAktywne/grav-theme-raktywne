@@ -1,0 +1,66 @@
+{% extends 'partials/base.html.twig' %}
+
+{% set collection = page.collection() %}
+{% set pagination = page.collection.params.pagination %}
+{% if pagination.nextUrl is null and pagination.prevUrl is null %}
+	{% set pagination = [1] %}
+{% endif %}
+
+{% block content %}
+	<div class="grid">
+		<div class="grid-box-1-1">
+			<div class="grid-box-content">
+				<div class="title-box">
+					<h2> {{ page.title }} </h2>
+				</div>
+			</div>
+		</div>
+	</div class="grid">
+	{% for g in pagination %}
+		<div id='page-{{ g.number }}' class='pagination-page'>
+		<div class='pagination-content grid'>
+		{% if g.isCurrent or (pagination[0] == 1) %}
+		{% for n in collection %}
+		<div class="grid-box-1-4 plyta-box">
+			<div class="grid-box-content">
+				<div class="grid-box-bg" style='background-image: url(
+				{% if n.header.display_image is not empty %}
+				{{ n.media[n.header.display_image|first.name].display('thumbnail').cropZoom(400,400).url() }}
+				{% else %}
+				{{ url('theme://images/fotos/photo1.jpg') }}
+				{% endif %}
+				)'></div>
+				<div class="plyta-wrapper" onclick='linkTo(
+					{% if n.url|split("/")|length == 3 %}
+					"{{ page.url }}","{{ n.slug }}"
+					{% else %}
+					"{{ page.parent.url }}","{{ page.slug }}/{{ n.slug }}"
+					{% endif %}
+					)' >
+					<div class="plyta-titles">
+						<div class="title-artist">
+							<h5>{% block uppertitle %}{% endblock %}</h5>
+						</div>
+						<div class="title-album">
+							<h3>{% block lowertitle %}{% endblock %}</h3>
+						</div>
+					</div>	
+				</div>			
+			</div>
+		</div>
+		{% endfor %}
+		{% endif %}
+		</div>
+		</div>
+	{% endfor %}
+	{#
+		<div class="grid">
+		<div class="grid-box-1-1">
+			{% if config.plugins.pagination.enabled and collection.params.pagination %}
+				{% include 'partials/pagination.html.twig' with {'base_url':page.url, 'pagination':collection.params.pagination} %}
+			{% endif %}
+		</div>
+		</div>
+	#}
+	</div>
+{% endblock %}

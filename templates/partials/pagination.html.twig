@@ -1,0 +1,50 @@
+{% set pagination = pagination|default(page.collection.params.pagination) %}
+{% set base_url = base_url|default(page.url) %}
+{% if base_url|split('/')|length == 3  %}
+	{% set base_url = page.parent.url %}
+	{% set sub_url = page.slug %}
+{% endif %}
+{{ dupa }}
+{% if pagination|length > 1 %}
+
+<ul class="pagination">
+    {% if pagination.hasPrev %}
+        {% set url =  (base_url ~ pagination.params ~ pagination.prevUrl)|replace({'//':'/'}) %}
+        <li><a rel="prev" onclick='linkTo("{{ base_url }}"
+	{% if pagination.params is not empty or pagination.prevUrl is not empty or sub_url is not empty%}
+		, "{{ (sub_url ~ pagination.params ~ pagination.prevUrl)|slice(start, length) }}"
+	{% endif %}
+	)'>&laquo;</a></li>
+    {% else %}
+        <li><span>&laquo;</span></li>
+    {% endif %}
+
+    {% for paginate in pagination %}
+
+        {% if paginate.isCurrent %}
+            <li><span>{{ paginate.number }}</span></li>
+        {% elseif paginate.isInDelta %}
+            {% set url = (base_url ~ pagination.params ~ paginate.url)|replace({'//':'/'}) %}
+            <li><a onclick='linkTo("{{ base_url }}"
+		{% if pagination.params is not empty or paginate.url is not empty or sub_url is not empty %}
+			, "{{ (sub_url ~ pagination.params ~ paginate.url)|slice(start, length) }}"
+		{% endif %}
+		)'>{{ paginate.number }}</a></li>
+        {% elseif paginate.isDeltaBorder %}
+            <li class="gap"><span>&hellip;</span></li>
+        {% endif %}
+
+    {% endfor %}
+    {% if pagination.hasNext %}
+        {% set url = (base_url ~ pagination.params ~ pagination.nextUrl)|replace({'//':'/'}) %}
+        <li><a rel="next" onclick='linkTo("{{ base_url }}"
+	{% if pagination.params is not empty or pagination.nextUrl is not empty or sub_url is not empty%}
+		, "{{ (sub_url ~ pagination.params ~ pagination.nextUrl)|slice(start, length) }}"
+	{% endif %}
+	)'>&raquo;</a></li>
+    {% else %}
+        <li><span>&raquo;</span></li>
+    {% endif %}
+</ul>
+
+{% endif %}

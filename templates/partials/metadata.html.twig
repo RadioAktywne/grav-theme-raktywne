@@ -1,0 +1,7 @@
+{% for meta in page.metadata %}
+<meta {% if meta.name %}name="{{ meta.name }}" {% endif %}{% if meta.http_equiv %}http-equiv="{{ meta.http_equiv }}" {% endif %}{% if meta.charset %}charset="{{ meta.charset }}" {% endif %}{% if meta.property %}property="{{ meta.property }}" {% endif %}{% if meta.content %}content="{{ meta.content }}" {% endif %}/>
+{% endfor %}
+<meta name="og:image" property="og:image" content="{{ page.media[page.header.display_image|first.name].display('thumbnail').cropZoom(400,400).url() }}">
+<meta name="og:title" property="og:title" content="{{ page.title }}">
+<meta property="og:image:width" content="400">
+<meta property="og:image:height" content="400">

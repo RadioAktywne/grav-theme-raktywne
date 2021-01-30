@@ -1,0 +1,25 @@
+title: Sam Player
+'@extends':
+   type: default
+   context: blueprints://pages
+
+form:
+   fields:
+      tabs:
+         type: tabs
+         active: 1
+
+         fields:
+            content:
+               fields:
+                  header.streamtitle:
+                      type: string
+                      label: Tytuł Streamu
+                      default: 'Super Koncert'
+                      validate:
+                         required: true
+                         type: string
+                  header.streamhours:
+                      type: string
+                      label: Godziny Streamu
+                      default: '20:00 - 24:00' 

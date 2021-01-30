@@ -1,0 +1,100 @@
+{% set theme_config = attribute(config.themes, config.system.pages.theme) %}
+<!DOCTYPE html>
+<html lang="{{ grav.language.getActive ?: theme_config.default_lang }}">
+<head>
+{% block head %}
+    <meta charset="utf-8" />
+    <title>{% if header.title %}{{ header.title|e('html') }} | {% endif %}{{ site.title|e('html') }}</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% include 'partials/metadata.html.twig' %}
+
+    <link rel="icon" type="image/png" href="{{ url('theme://images/faviconneg.png') }}" />
+    <link rel="canonical" href="{{ page.url(true, true) }}" />
+
+    {% block stylesheets %}
+        {% do assets.addCss('https://unpkg.com/purecss@1.0.0/build/pure-min.css', 100) %}
+        {% do assets.addCss('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', 99) %}
+        {% do assets.addCss('theme://css/custom.css', 98) %}
+        {% do assets.addCss('theme://css-compiled/tabs.css', 98) %}
+    {% endblock %}
+    {{ assets.css() }}
+
+    {% block javascripts %}
+        {% do assets.addJs('jquery', 100) %}
+        {% do assets.addJs('theme://js/jquery.jplayer.min.js', 100) %}
+        {% do assets.addJs('https://hammerjs.github.io/dist/hammer.js', 99) %}
+        {% do assets.addJs('theme://js/jquery.hammer.js', 99) %}
+        {% do assets.addJs('theme://js/custom.js', 98) %}
+	{% do assets.addJs('theme://js/playerlive.js', 98) %}
+	{% do assets.addJs('theme://js/player.js', 98) %}
+    {% endblock %}
+    {{ assets.js() }}
+
+{% endblock head%}
+</head>
+<body id="top" class="{{ page.header.body_classes }}">
+
+{% block header %}
+    <div class="header">
+        <div class="wrapper padding">
+            <a class="logo left" href="{{ base_url == '' ? '/' : base_url }}">
+		<img src={{ url('theme://images/ra-logof.svg') }}></img>
+            </a>
+		<a class="left logos" id="iglogo" target='_blank' href="https://www.instagram.com/radioaktywnepw/">
+			<img src={{ url('theme://images/iglogo.svg') }}></img>
+		</a>
+		<a class="left logos" id="fblogo" target='_blank' href="https://www.facebook.com/pg/RadioaktywnePW">
+			<img src={{ url('theme://images/fblogo.svg') }}></img>
+		</a>
+            {% block header_navigation %}
+            <nav class="main-nav">
+                {% include 'partials/navigation.html.twig' %}
+            </nav>
+            <nav class="mobile-nav">
+                {% include 'partials/mobilenavigation.html.twig' %}
+            </nav>
+            {% endblock %}
+        </div>
+    </div>
+<div id="live_player"></div>
+<div id="live2_player"></div>
+<div id="player_w_stanie_posrednim"></div>
+{% endblock %}
+
+{% block body %}
+    <section id="body">
+	{% for p in pages.children.visible %}
+		<div id='tab-{{ loop.index }}' class='tab{% if p.active or p.activeChild %} selected-tab{% endif %}'>
+			<div class='content'>
+				{% if p.active or p.activeChild%}
+					{% block content %}{% endblock %}
+				{% elseif p.url == '/' %}
+					{% include "mainp.html.twig" %}
+				{% endif %}
+			</div>
+		</div>
+	{% endfor %}
+	{% block error %}{% endblock %}
+    </section>
+{% endblock %}
+
+{% block footer %}
+    <div id="footer">
+	<a class="left" id='contact-link'  onclick="linkTo('/radio','o-nas')"> kontakt <img src={{url('theme://images/arrow.svg')}}></img></a>
+	<a class="right logosy" id="sspw" target='_blank' href="https://sspw.pl">
+		<img src={{ url('theme://images/sspw.png') }}></img>
+	</a>
+	<a class="right logosy" id="tvpw" target='_blank' href="https://tvpw.pl">
+		<img src={{ url('theme://images/TVPW_rgb.png') }}></img>
+	</a>
+    </div>
+{% endblock %}
+
+{% block bottom %}
+    {{ assets.js('bottom') }}
+{% endblock %}
+
+</body>
+</html>

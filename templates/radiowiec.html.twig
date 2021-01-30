@@ -1,0 +1,20 @@
+{% embed 'default.html.twig' %}
+{% set col = page.collection({'items': {'@page.children': '/radio/audycje'},'order': {'by': 'title', 'dir': 'asc'}}) %}
+{% set audycje = page.collection() %}
+{% for p in col %}
+	{% if page.url in p.header.ludzie %}
+		{% set audycje = audycje.addPage(p) %}
+	{% endif %}
+{% endfor %}
+{% block additional %}
+<h2>{{ page.header.rola }}</h2>
+{% if audycje is not empty %}
+<div class="title-box"><h2>Audycje</h2></div>
+<ul class='ramowka-lista'>
+{% for p in audycje %}
+		<li><a onclick="linkTo('/radio','audycje/{{ p.slug }}')">{{ p.title }}</a></li>
+{% endfor %}
+</ul>
+{% endif %}
+{% endblock %}
+{% endembed %}

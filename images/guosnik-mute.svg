@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 20 20"
+   height="20mm"
+   width="20mm">
+  <defs
+     id="defs2" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(0,-277)"
+     id="layer1">
+    <path
+       transform="matrix(0.33333332,-0.99999994,0.57735024,0.57735024,-157.36619,126.30048)"
+       d="m 12.5,287 -5.625,3.2476 -5.6250002,3.24759 0,-6.49519 0,-6.49519 5.6250005,3.24759 z"
+       id="path3409"
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.26100016;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill" />
+    <rect
+       y="284.5"
+       x="5"
+       height="5"
+       width="2.5"
+       id="rect3411"
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.26100016;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill" />
+    <rect
+       transform="rotate(-45)"
+       y="200.01071"
+       x="-196.49358"
+       height="20"
+       width="1.2499996"
+       id="rect7170"
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.84609842;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill" />
+    <rect
+       transform="rotate(45)"
+       y="185.86858"
+       x="209.38571"
+       height="20"
+       width="1.2499996"
+       id="rect7170-2"
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.84609842;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill" />
+  </g>
+</svg>

@@ -1,0 +1,77 @@
+{% extends 'partials/base.html.twig' %}
+
+{% set collection = page.collection() %}
+{% set pagination = collection.params.pagination %}
+{% if pagination.nextUrl is null and pagination.prevUrl is null %}
+	{% set pagination = [1] %}
+{% endif %}
+
+{% block content %}
+	<div class="grid">
+		<div class="grid-box-2-3 lista-box">
+			<div class="grid-box-content">
+				<div class="title-box"><h2>{{ page.title }}</h2></div>
+			</div>
+		</div>
+	</div>
+	{% for g in pagination %}
+	<div id="page-{{ g.number }}" class='pagination-page'>
+	<div class="pagination-content grid">
+		{% if g.isCurrent or pagination[0]==1 %}
+		<div class="grid-box-2-3 lista-box">
+			<div class="grid-box-content">
+				<div class="list-container">
+					{% for n in collection %}
+						<div class="nagranie" id="rec_rec_{{ loop.index }}">
+							<div id='titlejp-rec_{{ loop.index }}' class="nagranie-title" onclick=
+							{% if n.header.audio_attach_oga is not empty %}
+							"playrec(this, '{{ n.media[n.header.audio_attach_oga|first.name].url() }}')"
+							{% else %}
+							"linkTo('{{ n.parent.link }}','{{ n.slug }}')"
+							{% endif %}
+>{{ n.title }}</div>
+							<div id="jp_container_rec_{{ loop.index }}" class="player-container">
+								<div id="jp-play_rec_{{ loop.index }}" class="player-button play-button">
+									<img src={{ url('theme://images/play-white.svg') }}></img>
+								</div>
+								<div id="jp-pause_rec_{{ loop.index }}" class="player-button pause-button">
+									<img src={{ url('theme://images/pause-white.svg') }}></img>
+								</div>
+								<div class="time">
+									<div id="jp-current-time_rec_{{ loop.index }}" class="player-time current-time"></div>
+									<span class="splitter">/</span>
+									<div id="jp-duration_rec_{{ loop.index }}" class="player-time duration-time"></div>
+								</div>
+								<div class="seekbar-wrap">
+									<div id="jp-seek-bar_rec_{{ loop.index }}" class="player-slider seek-bar">
+										<div id="jp-play-bar_rec_{{ loop.index }}" class="player-slider play-bar"></div>
+									</div>
+								</div>
+								<div id="jp-mute_{{ loop.index }}" class="player-button mute-button">
+									<img src={{ url('theme://images/guosnik-white.svg') }}></img>
+								</div>
+								<div id="jp-unmute_{{ loop.index }}" class="player-button unmute-button">
+									<img src={{ url('theme://images/guosnik-mute-white.svg') }}></img>
+								</div>
+							</div>
+							<div class="more-link" onclick='linkTo("{{ n.parent.link }}", "{{ n.slug }}")'>
+								<div class="more">Więcej...</div>
+								<img src={{ url('theme://images/arrow.svg') }}></img>
+							</div>
+						</div>
+					{% endfor %}
+
+		{#
+					{% if config.plugins.pagination.enabled and collection.params.pagination %}
+						 {% include 'partials/pagination.html.twig' with {'base_url':page.url, 'pagination':collection.params.pagination} %}
+					{% endif %}
+		#}
+							
+				</div>
+			</div>
+		</div>
+	{% endif %}
+	</div>
+	</div>
+	{% endfor %}
+{% endblock %}

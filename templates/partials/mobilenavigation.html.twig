@@ -1,0 +1,16 @@
+<a onClick='toggleMobile()'><img class="mobile-nav-button" src={{ url('theme://images/mobilnav.svg') }}></img></a>
+{% macro loop(page) %}
+    {% for p in page.children.visible %}
+        {% set current_page = p.active or p.activeChild ? 'selected' : '' %}
+            <li id="nav-tab-{{ loop.index }}" class="{{ current_page }} nav-tab" dest="{{ p.url }}">
+		<a>
+                    {{ p.menu }}
+                </a>
+            </li>
+    {% endfor %}
+{% endmacro %}
+<div class="mobile-menu">
+<ul>
+	{{ _self.loop(pages) }}
+</ul>
+</div>

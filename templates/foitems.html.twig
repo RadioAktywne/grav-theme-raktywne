@@ -1,0 +1,26 @@
+{% extends 'partials/base.html.twig' %}
+
+{# =====================KOLEKCJE================== #}
+
+{% set col = page.collection() %}
+
+{% block content %}
+	<div class="grid fouritems">
+	{% for a in col %}
+		<div class="
+			{% if loop.index is odd %}
+				grid-box-2-3
+			{% else %}
+				grid-box-1-3
+			{% endif %}
+		">
+			<div class="grid-box-content" onclick="linkTo('{{ page.url}}','{{ a.slug }}')">
+				<div class="grid-box-bg" style="background-image: url('{{ a.media[a.header.display_image|first.name].display('thumbnail').cropZoom(800,500).url() }}');"></div>
+				<div class="title-box"><h2>{{ a.title  }}</h2></div>	
+			</div>
+		</div>		
+	{% endfor %}
+	</div>
+					
+			
+{% endblock %}

@@ -1,0 +1,73 @@
+{% embed 'default.html.twig' %}
+
+{% set ludzie = page.collection() %}
+{% for p in page.header.ludzie %}
+	{% set radiowiec = page.find(p) %}
+	{% set ludzie = ludzie.addPage(radiowiec) %}
+{% endfor %}
+
+{% set days = {'Mon':'Poniedziałek','Tue':'Wtorek','Wed':'Środa','Thu':'Czwartek','Fri':'Piątek','Sat':'Sobota','Sun':'Niedziela'} %}
+{% set auddays = page.taxonomy.tag %}
+{% set superarray = ['ojvej'] %}
+{% for a,b in days %}
+	{% if a in auddays %}
+		{% if superarray|first != 'ojvej' %}
+			{% set superarray = superarray|merge([b]) %}
+		{% else %}
+			{% set superarray = [b] %}
+		{% endif %}
+	{% endif %}
+{% endfor %}
+{% set dzieci = page.collection({'items': '@self.children'}) %}
+{% set superarrayy = {'ojvej':'ojvej'} %}
+{% for p in dzieci %}
+	{% for a,b in days %}
+		{% if a in p.taxonomy.tag %}
+			{% set godziny = p.header.startaud~'-'~p.header.koniecaud %}
+			{% if superarrayy|first == 'ojvej' %}
+				{% set superarrayy = {(godziny) : (b)} %}
+			{% else %}
+				{% if superarrayy[godziny] is not empty %}
+					{% set superarrayy = superarrayy|merge({(godziny) : superarrayy[godziny]~', '~b}) %}
+				{% else %}
+					{% set superarrayy = superarrayy|merge({(godziny) : b}) %}
+				{% endif %}
+			{% endif %}
+			
+		{% endif %}
+	{% endfor %}
+{% endfor %}
+{% set finalarray = {'ojvej':'ojvej'} %}
+
+{% block additional %}
+	<div class="title-box"><h2>Na żywo</h2></div>
+	<div class="ramowka-box">
+		<div class="title-box"><h2>
+			{% for d in superarray %}
+				{{d}}{% if d != superarray|last %}, {% endif %}
+			{% endfor %}
+		</h2></div>
+		<ul class='ramowka-lista'>
+			<li> <span class='godziny'> {{page.header.startaud}} - {{page.header.koniecaud}} </span>
+		</ul>
+	</div>
+	{% if superarrayy|first != 'ojvej' %}	
+	<div class="title-box"><h2>Powtórki</h2></div>
+	<div class="ramowka-box">
+		{% for a,b in superarrayy %}
+			<div class="title-box"><h2>{{b}}</h2></div>
+			<ul class='ramowka-lista'>
+				<li><span class='godziny'>{{a}}</span>
+			</ul>
+		{% endfor %}
+	</div>
+	{% endif %}
+	<div class="title-box"><h2>Redaktorzy</h2></div>
+	<ul class='ramowka-lista'>
+	{% for p in ludzie %}
+		<li><a onclick="linkTo('/radio','radiowcy/{{ p.slug }}')">{{ p.title }}</a></li>
+	{% endfor %}
+	</ul>
+
+{% endblock %}
+{% endembed %}

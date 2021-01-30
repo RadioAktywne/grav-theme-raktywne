@@ -1,0 +1,35 @@
+title: Audycja
+'@extends':
+   type: default
+   context: blueprints://pages
+
+form:
+   fields:
+      tabs:
+         type: tabs
+         active: 1
+
+         fields:
+            content:
+               fields:
+                  header.startaud:
+                      type: text
+                      label: Początek audycji
+                      default: '00:00'
+                      validate:
+                         required: true
+                         type: string
+                  header.koniecaud:
+                      type: text
+                      label: Koniec audycji
+                      default: '00:00'
+                      validate:
+                         required: true
+                         type: string
+                  header.ludzie:
+                      type: pages
+                      multiple: true
+                      label: Ludzie
+                      validate:
+                         type: commalist
+                  
