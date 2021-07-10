@@ -13,6 +13,7 @@ function liveplayer(){
 			mp3: "https://listen.radioaktywne.pl:8443/ramp3koncert"},
 		ready = false;
 
+	var volume = 0.8
 
 	$('#live_player').jPlayer({
 		ready: function(event){ ready = true; $(this).jPlayer("setMedia", stream); },
@@ -26,17 +27,26 @@ function liveplayer(){
 		solution: 'html',
 		supplied: 'oga, mp3',
 		preload: 'none',
-		volume: 0.8,
+		volume: volume,
 		muted: false,
 		cssSelectorAncestor: '#jp_live_container',
 		cssSelector: {
 			play: '#jp-live-play',
 			pause: '#jp-live-pause',
 			mute: '#jp-live-mute',
-			unmute: '#jp-live-unmute',
-			volumeBar: '#jp-live-volume-bar',
-			volumeBarValue: '#jp-volume-bar-value'
+			unmute: '#jp-live-unmute'
 		},
+	});
+
+	$('#volume-slider').slider({
+		value : volume * 100,
+		range: 'min',
+		orientation: "vertical",
+	
+		slide: function(event, ui) {
+			var volume = ui.value / 100;
+			$("#live_player").jPlayer("volume", volume);
+		}
 	});
 
 	$('#live2_player').jPlayer({
@@ -51,17 +61,26 @@ function liveplayer(){
 		solution: 'html',
 		supplied: 'mp3',
 		preload: 'none',
-		volume: 0.8,
+		volume: volume,
 		muted: false,
 		cssSelectorAncestor: '#jp_live2_container',
 		cssSelector: {
 			play: '#jp-live2-play',
 			pause: '#jp-live2-pause',
 			mute: '#jp-live2-mute',
-			unmute: '#jp-live2-unmute',
-			volumeBar: '#jp-live2-volume-bar',
-			volumeBarValue: '#jp-volume-bar2-value'
+			unmute: '#jp-live2-unmute'
 		},
+	});
+
+	$('#volume-slider2').slider({
+		value : volume * 100,
+		range: 'min',
+		orientation: "vertical",
+	
+		slide: function(event, ui) {
+			var volume = ui.value / 100;
+			$("#live_player2").jPlayer("volume", volume);
+		}
 	});
 
 }
@@ -83,10 +102,18 @@ function linkliveselectors(){
 			play: '#jp-live-play',
 			pause: '#jp-live-pause',
 			mute: '#jp-live-mute',
-			unmute: '#jp-live-unmute',
-			volumeBar: '#jp-live-volume-bar',
-			volumeBarValue: '#jp-volume-bar-value'
+			unmute: '#jp-live-unmute'
 		},
+	});
+	$('#volume-slider').slider({
+		value: ($("#live_player")[0]?.lastChild.volume ?? 0) * 100,
+		range: 'min',
+		orientation: "vertical",
+	
+		slide: function(event, ui) {
+			var volume = ui.value / 100;
+			$("#live_player").jPlayer("volume", volume);
+		}
 	});
 }
 
@@ -97,9 +124,17 @@ function linklive2selectors(){
 			play: '#jp-live2-play',
 			pause: '#jp-live2-pause',
 			mute: '#jp-live2-mute',
-			unmute: '#jp-live2-unmute',
-			volumeBar: '#jp-live2-volume-bar',
-			volumeBarValue: '#jp-volume-bar2-value'
+			unmute: '#jp-live2-unmute'
 		},
+	});
+	$('#volume-slider2').slider({
+		value: ($("#live_player2")[0]?.lastChild.volume ?? 0) * 100,
+		range: 'min',
+		orientation: "vertical",
+	
+		slide: function(event, ui) {
+			var volume = ui.value / 100;
+			$("#live_player2").jPlayer("volume", volume);
+		}
 	});
 }	

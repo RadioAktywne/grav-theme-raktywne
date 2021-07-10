@@ -473,4 +473,10 @@ ul.pagination {
       height: 100%;
       width: 100%; }
 
+#volume-slider, #volume-slider2 { background: #3c3c4c;}
+
+#volume-slider > span.ui-state-active, #volume-slider2 > span.ui-state-active {
+  background: #6aba9c;
+}
+
 /*# sourceMappingURL=tabs.css.map */

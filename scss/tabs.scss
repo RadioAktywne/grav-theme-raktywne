@@ -650,3 +650,8 @@ ul.pagination {
 	}
 }
 
+#volume-slider, #volume-slider2 { background: $grafitowy; }
+
+#volume-slider > span.ui-state-active, #volume-slider2 > span.ui-state-active {
+	background: $mietowy;
+}
