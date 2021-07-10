@@ -242,11 +242,3 @@ $(window).hammer().bind('panup', function() {
 		pageLoad();
 	}
 });	
-$(window).hammer().bind('swiperight', function() {
-	var currentnum = $('.selected').attr('id').substring(8,10);	
-	switchTab(Number(currentnum)-1);
-});
-$(window).hammer().bind('swipeleft', function() {
-	var currentnum = $('.selected').attr('id').substring(8,10);	
-	switchTab(Number(currentnum)+1);
-});
