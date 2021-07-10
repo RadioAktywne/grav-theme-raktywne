@@ -39,8 +39,8 @@
 {% block header %}
     <div class="header">
         <div class="wrapper padding">
-            <a class="logo left" href="{{ base_url == '' ? '/' : base_url }}">
-		<img src={{ url('theme://images/ra-logof.svg') }}></img>
+            <a class="logo left" onclick="linkTo('/')">
+		        <img src={{ url('theme://images/ra-logof.svg') }}></img>
             </a>
             <a class="left logos" id="ytlogo" target='_blank' href="https://www.youtube.com/channel/UCWotunR5aYz-A_tM2fcs9eg">
                     <img src={{ url('theme://images/ytlogo.svg') }}></img>

@@ -60,7 +60,7 @@ function linkTo(url, sub=null, push=true){
 		switchTab(id, false);
 		loadContent('#tab-' + id, url + '/' + sub, ' .content', push);
 	} else {
-		switchTab(id, true, false);
+		switchTab(id, true, push);
 		disCurrentPlayer();
 	}
 	$('.mobile-menu').removeClass('aktiv-mobile');
