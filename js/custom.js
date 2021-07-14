@@ -60,7 +60,7 @@ function linkTo(url, sub=null, push=true){
 		switchTab(id, false);
 		loadContent('#tab-' + id, url + '/' + sub, ' .content', push);
 	} else {
-		switchTab(id, true, false);
+		switchTab(id, true, push);
 		disCurrentPlayer();
 	}
 	$('.mobile-menu').removeClass('aktiv-mobile');
@@ -242,11 +242,3 @@ $(window).hammer().bind('panup', function() {
 		pageLoad();
 	}
 });	
-$(window).hammer().bind('swiperight', function() {
-	var currentnum = $('.selected').attr('id').substring(8,10);	
-	switchTab(Number(currentnum)-1);
-});
-$(window).hammer().bind('swipeleft', function() {
-	var currentnum = $('.selected').attr('id').substring(8,10);	
-	switchTab(Number(currentnum)+1);
-});

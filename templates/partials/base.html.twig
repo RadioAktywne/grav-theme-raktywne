@@ -16,6 +16,7 @@
     {% block stylesheets %}
         {% do assets.addCss('https://unpkg.com/purecss@1.0.0/build/pure-min.css', 100) %}
         {% do assets.addCss('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', 99) %}
+        {% do assets.addCss('https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css', 99) %}
         {% do assets.addCss('theme://css/custom.css', 98) %}
         {% do assets.addCss('theme://css-compiled/tabs.css', 98) %}
     {% endblock %}
@@ -23,12 +24,13 @@
 
     {% block javascripts %}
         {% do assets.addJs('jquery', 100) %}
+        {% do assets.addJs('https://code.jquery.com/ui/1.12.1/jquery-ui.js', 100) %}
         {% do assets.addJs('theme://js/jquery.jplayer.min.js', 100) %}
         {% do assets.addJs('https://hammerjs.github.io/dist/hammer.js', 99) %}
         {% do assets.addJs('theme://js/jquery.hammer.js', 99) %}
         {% do assets.addJs('theme://js/custom.js', 98) %}
-	{% do assets.addJs('theme://js/playerlive.js', 98) %}
-	{% do assets.addJs('theme://js/player.js', 98) %}
+        {% do assets.addJs('theme://js/playerlive.js', 98) %}
+        {% do assets.addJs('theme://js/player.js', 98) %}
     {% endblock %}
     {{ assets.js() }}
 
@@ -39,18 +41,21 @@
 {% block header %}
     <div class="header">
         <div class="wrapper padding">
-            <a class="logo left" href="{{ base_url == '' ? '/' : base_url }}">
-		<img src={{ url('theme://images/ra-logof.svg') }}></img>
+            <a class="logo left" onclick="linkTo('/')">
+		        <img src={{ url('theme://images/ra-logof.svg') }}></img>
             </a>
-                <a class="left logos" id="ytlogo" target='_blank' href="https://www.youtube.com/channel/UCWotunR5aYz-A_tM2fcs9eg">
-                        <img src={{ url('theme://images/ytlogo.svg') }}></img>
-                </a>
-		<a class="left logos" id="iglogo" target='_blank' href="https://www.instagram.com/radioaktywnepw/">
-			<img src={{ url('theme://images/iglogo.svg') }}></img>
-		</a>
-		<a class="left logos" id="fblogo" target='_blank' href="https://www.facebook.com/pg/RadioaktywnePW">
-			<img src={{ url('theme://images/fblogo.svg') }}></img>
-		</a>
+            <a class="left logos" id="ytlogo" target='_blank' href="https://www.youtube.com/channel/UCWotunR5aYz-A_tM2fcs9eg">
+                    <img src={{ url('theme://images/ytlogo.svg') }}></img>
+            </a>
+            <a class="left logos" id="iglogo" target='_blank' href="https://www.instagram.com/radioaktywnepw/">
+                <img src={{ url('theme://images/iglogo.svg') }}></img>
+            </a>
+            <a class="left logos" id="fblogo" target='_blank' href="https://www.facebook.com/pg/RadioaktywnePW">
+                <img src={{ url('theme://images/fblogo.svg') }}></img>
+            </a>
+            <a class="left logos" id="spotifylogo" target='_blank' href="https://open.spotify.com/show/615XOIPs62nU0f5itBUY8V">
+                <img src={{ url('theme://images/spotifylogo.svg') }}></img>
+            </a>
             {% block header_navigation %}
             <nav class="main-nav">
                 {% include 'partials/navigation.html.twig' %}
@@ -91,6 +96,9 @@
 	</a>
 	<a class="right logosy" id="tvpw" target='_blank' href="https://tvpw.pl">
 		<img src={{ url('theme://images/TVPW_rgb.png') }}></img>
+	</a>
+    <a class="right logosy" id="sspw" target='_blank' href="https://www.facebook.com/KlubFocus/">
+		<img src={{ url('theme://images/focus.png') }}></img>
 	</a>
     </div>
 {% endblock %}
