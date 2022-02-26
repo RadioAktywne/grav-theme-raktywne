@@ -89,7 +89,7 @@ function rds(){
 		
 		$.get(url, function(data){
 			var title = data.icestats.source[1].title;
-			if( title != 'Unknown'){	
+			if( title != 'Unknown' && !title.endsWith("- Unknown")){	
 				$('.jp-live-title').html(title);
 			}
 			
